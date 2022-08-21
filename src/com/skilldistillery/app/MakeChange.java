@@ -7,12 +7,12 @@ public class MakeChange {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		welcome();
-		System.out.print("Please enter the cost of the item being purchased: ");
+		System.out.print("Please enter the cost of the item being purchased: $");
 		double itemPrice = scan.nextDouble();
-		System.out.print("Please enter the amount tendered by the customer: ");
+		System.out.print("Please enter the amount tendered by the customer: $");
 		double payment = scan.nextDouble();
 		double changeToCust = change(itemPrice, payment);
-		System.out.println("Your change is: " + changeToCust);
+		System.out.printf("Your change is: $ %.2f" , changeToCust);
 
 	}
 
@@ -37,7 +37,7 @@ public class MakeChange {
 
 		if (cost < payAmount) {
 			changeToCust = payAmount - cost;
-			changeBreakdown = (changeToCust * 100);
+			changeBreakdown = Math.round(changeToCust * 100);
 			while (changeBreakdown > 0.0) {
 				if (changeBreakdown % 1000 != changeBreakdown) {
 					tens += 1;
@@ -74,38 +74,39 @@ public class MakeChange {
 			System.out.println("You've tendered the exact amount. Thank You");
 		} else {
 			System.out.println("You didn't pay enough, put more money in my hand.");
+			
 		}
 		while (tens != 0 || fives != 0 || ones != 0 || quarters != 0 
 				|| dimes != 0 || nickels != 0 || pennies != 0) {
 			
 		
 			if (tens > 0) {
-				System.out.println(tens + ": $10 bill(s)");
-				tens -= 1;
+				System.out.println(tens + " ten dollar bill(s),");
+				tens = 0;
 		}
 			else if (fives > 0) {
-				System.out.println(fives + ": $5 bill(s)");
-				fives -= 1;
+				System.out.println(fives + " five dollar bill(s),");
+				fives = 0;
 		}
 			else if (ones > 0) {
-				System.out.println(ones + ": $1 bill(s)");
-				ones -= 1;
+				System.out.println(ones + " one dollar bill(s),");
+				ones = 0;
 		}
 			else if (quarters > 0) {
-				System.out.println(quarters + ": Quarter(s)");
-				quarters -= 1;
+				System.out.println(quarters + " Quarter(s),");
+				quarters = 0;
 		}
 			else if (dimes > 0) {
-				System.out.println(dimes + ": Dime(s)");
-				dimes -= 1;
+				System.out.println(dimes + " Dime(s),");
+				dimes = 0;
 		}
 			else if (nickels > 0) {
-				System.out.println(nickels + ": Nickel(s)");
-				nickels -= 1;
+				System.out.println(nickels + " Nickel(s),");
+				nickels = 0;
 		}		
 			else if (pennies > 0) {
-				System.out.println(pennies + ": Pennies");
-				pennies -= 1;
+				System.out.println(pennies + " Pennies.");
+				pennies = 0;
 		}
 		}
 		return changeToCust;
